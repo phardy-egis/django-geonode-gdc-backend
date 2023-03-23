@@ -6,7 +6,7 @@ It is released under GNU-GPL licence version 3.
 
 Detailed documentation is in the "docs" directory.
 
-## Installation
+## Add Django app. to Geonode setup
 ### Manual install
 Here below are listed the instruction for install:
 
@@ -45,6 +45,6 @@ Here below are listed the instruction for install:
 
 7. `gdc-backend` comes with [gdc-frontend](https://github.com/phardy-egis/django-geonode-gdc-frontend). A [gdc-frontend](https://github.com/phardy-egis/django-geonode-gdc-frontend) production build should be served to make the interface available for users.
 
-### Install with pip
+### Example setup
 
-(Section not yet written)
+You can find an example of geonode setup with GDC app in this repo: [django-geonode-dev](https://github.com/phardy-egis/django-geonode-dev.git). 
