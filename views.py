@@ -5,6 +5,7 @@ from geonode.layers.models import *
 from geonode.base.models import *
 from rest_framework import viewsets
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from django.http import JsonResponse, Http404
 import shapely
 
@@ -130,20 +131,14 @@ def ResourceCustomListJSONView(request):
     
     return JsonResponse(geojson)
 
+# API entrypoint for variable objects
 class TopicCategoryGDCViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    API endpoint that lists categories.
+    API endpoint that lists categories and their SVG icons.
     """
-    #authentication_classes = [SessionAuthentication, BasicAuthentication, OAuth2Authentication]
-    #permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticated]
     queryset = TopicCategoryGDC.objects.all()
     serializer_class = TopicCategoryGDCSerializer
-
-    def retrieve(self, request, pk=None):
-        queryset = self.queryset
-        category = get_object_or_404(queryset, pk=pk)
-        serializer = TopicCategoryGDCSerializer(category)
-        return Response(serializer.data)
 
 # View used to check if user is logged in
 def UserAuthCheck(request):
