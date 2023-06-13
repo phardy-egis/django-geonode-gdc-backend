@@ -1,11 +1,11 @@
 from django.urls import path, include
-from . import views
+from .views import DetailsViewSet, TopicCategoryGDCViewSet, GeoJSONViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r'details', views.DetailsViewSet)
-router.register(r'categories', views.CategoriesViewSet)
-router.register(r'geojson', views.GeoJSONViewSet)
+router.register(r'details', DetailsViewSet)
+router.register(r'categories', TopicCategoryGDCViewSet)
+router.register(r'geojson', GeoJSONViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),

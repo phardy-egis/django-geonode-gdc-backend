@@ -2,7 +2,7 @@ from rest_framework import serializers
 from geonode.base.models import ResourceBase
 from .models import TopicCategoryGDC
 
-class CategoriesSerializer(serializers.ModelSerializer):
+class TopicCategoryGDCSerializer(serializers.ModelSerializer):
     class Meta:
         model = TopicCategoryGDC
         fields = '__all__'
