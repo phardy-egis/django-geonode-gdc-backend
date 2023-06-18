@@ -24,8 +24,6 @@ class DetailsSerializer(serializers.ModelSerializer):
         fields = ['title', 'thumbnail_url' , 'detail_url', 'alternate', 'date', 'date_type', 'raw_data_quality_statement', 'raw_supplemental_information', 'raw_abstract', 'alternate', 'regions', 'category', 'bbox_polygon','ll_bbox_polygon']
 
 class GeoJSONSerializer(serializers.ModelSerializer):
-    class Meta:
-        fields = ['pk', 'title', 'abstract' ,'ll_bbox_polygon']
 
     def to_representation(self, obj):
         
@@ -33,28 +31,34 @@ class GeoJSONSerializer(serializers.ModelSerializer):
             formated_abstract = obj.abstract[:150-3] + '...'
         else:
             formated_abstract = obj.abstract
-
-        properties =  {
-            'pk': obj.pk,
-            'title': obj.title,
-            'abstract': formated_abstract,
-            'detail_url': obj.detail_url
-        }
-
-        geometry = None
-        if obj.ll_bbox_polygon:
-            geometry = {
-                'type': 'Polygon',
-                'coordinates': [obj.ll_bbox_polygon.coords[0]]
-            },
         
-        feature = {
-            'type': 'Feature',
-            'properties': properties,
-            'geometry': geometry,
-        }
+        if obj.ll_bbox_polygon:
+            feature = {
+                'type': 'Feature',
+                'properties': {
+                    'pk': obj.pk,
+                    'title': obj.title,
+                    'abstract': formated_abstract,
+                    'detail_url': obj.detail_url
+                },
+                'geometry': {
+                    'type': 'Polygon',
+                    'coordinates': [obj.ll_bbox_polygon.coords[0]]
+                },
+            }
+        else:
+            feature = {
+                'type': 'Feature',
+                'properties': {
+                    'pk': obj.pk,
+                    'title': obj.title,
+                    'abstract': formated_abstract,
+                    'detail_url': obj.detail_url
+                },
+                'geometry': {
+                    'type': 'Polygon',
+                    'coordinates': None
+                },
+            }
+            
         return feature
-    
-    class Meta:
-        model = ResourceBase
-        fields = ['title', 'thumbnail_url' , 'detail_url', 'alternate', 'date', 'date_type', 'raw_data_quality_statement', 'raw_supplemental_information', 'raw_abstract', 'alternate', 'regions', 'category', 'bbox_polygon','ll_bbox_polygon']
