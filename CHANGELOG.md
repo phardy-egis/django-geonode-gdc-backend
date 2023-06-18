@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.0](https://github.com/phardy-egis/django-geonode-gdc-backend/compare/v0.1.1...v0.2.0) (2023-06-18)
+
+
+### Features
+
+* pagination over geojson data ([4c8b24a](https://github.com/phardy-egis/django-geonode-gdc-backend/commit/4c8b24a668cc29698d1c9b84609e042d58408469))
+
+
+### Bug Fixes
+
+* optimisation over data filtering ([6de8612](https://github.com/phardy-egis/django-geonode-gdc-backend/commit/6de8612830092b577f00a2685ed9793c2e593c63))
+* problem on geoJSON serialization ([eeaccd7](https://github.com/phardy-egis/django-geonode-gdc-backend/commit/eeaccd73fa7f284bef18c1505d8cd203ead66d38))
+* views now all compliant DRF framework ([4c8b24a](https://github.com/phardy-egis/django-geonode-gdc-backend/commit/4c8b24a668cc29698d1c9b84609e042d58408469))
+
 ## [0.1.1](https://github.com/phardy-egis/django-geonode-gdc-backend/compare/v0.1.0...v0.1.1) (2023-05-31)
 
 
